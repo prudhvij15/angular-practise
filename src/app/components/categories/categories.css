@@ -1,3 +1,6 @@
-.category div{
-  font-weight : 500px
+.container {
+  text-align : center
+}
+.container img {
+  width : 64px
 }
