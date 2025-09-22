@@ -1,14 +1,18 @@
 <h3 class="text-center">Lets learn Directives</h3>
-<div class="border border-3 rounded-3 p-3 m-3">
+
+<app-my-modal></app-my-modal>
+<div class="border border-3 rounded-3 p-3 m-3 ">
   <div>*ngIf before Angular 17</div>
   <div>
     Num is :
     <input type="number" [(ngModel)]="num" />
   </div>
 
-  <div *ngIf="num % 2 == 0">{{ num }} is Even Number</div>
+  <div *ngIf="num % 2 == 0";else odd>{{ num }} is Even Number</div>
   <div *ngIf="num % 2 !== 0">{{ num }} is Odd Number</div>
-
+  <ng-template>
+    {{num}} is odd number
+  </ng-template>
   <div class="border border-3 rounded-3 p-3 m-3">
     <div>*if after Angular 17</div>
     @if (num % 2 == 0) {
@@ -112,4 +116,10 @@
     <input type="number" [(ngModel)]="num" />
     <button class="btn" [ngClass]="num%2==0 ? 'btn-success' : 'btn-danger'">Button with Dynamic class</button>
   </div>
+</div>
+
+<div class="border border3 rounded-3 p-3 m-3">
+  <h4>Custom Directive (numbeONly)</h4>
+  <input type="text"  appNumberOnly name="" id="">
+  <!-- //the elemen wher custom directive is used is host elemtn -->
 </div>
