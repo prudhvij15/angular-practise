@@ -1,0 +1,135 @@
+<h3 class="text-center">Lets learn pu=upes</h3>
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div>Name is : {{ myName }}</div>
+  <div>Name is : {{ myName | uppercase }}</div>
+  <div>Name is : {{ myName | lowercase }}</div>
+  <div>Name is : {{ myName | titlecase }}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>Currency Pipe</p>
+  <div>Sal is : {{ sal }}</div>
+  <div>Sal is : {{ sal | currency }}</div>
+  <div>Sal is : {{ sal | currency: 'INR' }}</div>
+  <!-- [input. | pipeName : argument-1] -->
+
+  <div>Sal is : {{ sal | currency: 'USD' : '' }}</div>
+  <div>Sal is : {{ sal | currency: 'EUR' : '&euro;' }}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>date pipe</p>
+  <div>Full date is : {{ today }}</div>
+  <div>Date pipe chaning. is : {{ today | date | uppercase }}</div>
+  <div>Short Date is : {{ today | date: 'shortDate' }}</div>
+  <div>Medium is : {{ today | date: 'mediumDate' }}</div>
+  <div>FullDate is : {{ today | date: 'fullDate' }}</div>
+  <div>Short is : {{ today | date: 'short' }}</div>
+  <div>ShortTine is : {{ today | date: 'shortTime' }}</div>
+  <div>meidumTime is : {{ today | date: 'mediumTime' }}</div>
+  <!-- Small M represens minute  -->
+  <div>CustomFormat Date is : {{ today | date: 'dd/ MMM /yyyy' }}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>Number | Decimal pipe</p>
+  <!-- Before decimal 3 digits after decimal min 2 and max 5 digits -->
+  <div>{{ 12.111222333 | number: '3.2-5' }}</div>
+  <div>{{ 12.1 | number: '3.2-5' }}</div>
+  <div>{{ 0.5 | number: '3.2-5' }}</div>
+
+  <!-- PERCENT -->
+
+  <div>{{ 0.5 | percent }}</div>
+  <div>{{ 0.075 | percent }}</div>
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>JSON PIPE</p>
+
+  <p>{{ user | json }}</p>
+
+  <!-- key value pipe -->
+  @for (entry of user | keyvalue; track $index) {
+    <h5>{{ entry.key }} --- {{ entry.value }}</h5>
+  }
+</div>
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>Slice PIPE</p>
+
+  <div>{{ arr }}</div>
+  <div>{{ arr | slice: 2 - 5 }}</div>
+</div>
+
+<!-- custom pipes -->
+<div class="border border-2 rounded-2 p-2 m-2">
+  <p>CUSTOM PIPE(ordinal)</p>
+  <div><input type="number" [(ngModel)]="num" /></div>
+  <div>Ordinal Value is :{{ num | ordinal }}</div>
+
+  <!-- ROman input -->
+
+  <div><input type="number" [(ngModel)]="num2" /></div>
+  <div>Ordinal Value is :{{ num2 | ordinal }}</div>
+</div>
+
+<!-- 3.⁠ ⁠create a custom pipe called 'age' which takes a date as input and returns the age in years.
+   input : 04-06-2020
+   output : 5 years old -->
+
+<div class="border border-2 rounded-2 p-2 m-2">
+  <div><input type="date" [(ngModel)]="date" /></div>
+  <div>{{ date | age }}</div>
+</div>
+
+<!-- // 4.⁠ ⁠declare an array of employee objects. display them in a table.
+//    create a custom pipe 'Salutation' that will add 'mr. / miss.' before the employee name. -->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Salutation</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employeesData; track $index) {
+      <tr>
+        <td>{{ emp.gender | salutation }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>{{ emp.dept }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<!--
+5.⁠ ⁠declare an array of employee objects. display them in a table.
+   add a search-box above the table. create a custom-pipe to filter/search employees data. -->
+<div class="border border-2 rounded-2 p-2 m-2">
+  <input type="text" placeholder="search employee" [(ngModel)]="searchText" />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Salutation</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employeesData | searchEmployee: searchText; track $index) {
+        <tr>
+          <td>{{ emp.gender }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.salary }}</td>
+          <td>{{ emp.dept }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

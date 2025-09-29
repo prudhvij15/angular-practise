@@ -23,3 +23,5 @@ export class ProductList {
   faStar  = faStar;
   p:number =1
 }
+
+
